@@ -28,7 +28,7 @@ public class Threads {
     Thread.Builder virtualThreadBuilder = Thread.ofVirtual();
     Thread virtualThread = virtualThreadBuilder
         .name("Virtual-Thread-1")
-        .unstarted(() -> taskVirtual.run());
+        .unstarted(taskVirtual);
     virtualThread.start();
 
     virtualThread.join();
@@ -38,7 +38,7 @@ public class Threads {
     Thread.Builder platformThreadBuilder = Thread.ofPlatform();
     Thread platformThread = platformThreadBuilder
         .name("Platform-Thread-1")
-        .unstarted(() -> taskPlatform.run());
+        .unstarted(taskPlatform);
     platformThread.start();
 
     platformThread.join();

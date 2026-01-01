@@ -10,17 +10,18 @@ import java.util.stream.Stream;
 public class StreamNotes {
 
   public static void main(String[] args) {
-    concatTest();
-    findTest();
-    forEachTest();
-    anyMatchTest();
-    filterTest();
-    reduceTest();
-    parallelReduceTest();
-    intStreamTest();
-    spliteratorTest();
-    collectTest();
-    partitionByTest();
+    // concatTest();
+    // findTest();
+    // forEachTest();
+    // anyMatchTest();
+    // filterTest();
+    // reduceTest();
+    // parallelReduceTest();
+    // intStreamTest();
+    // spliteratorTest();
+    // collectTest();
+    // partitionByTest();
+    flatMapTest();
 
   }
 
@@ -135,5 +136,16 @@ public class StreamNotes {
     Map<Boolean, List<Integer>> partitioned = numbers.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
     System.out.println("Even: " + partitioned.get(true));
     System.out.println("Odd: " + partitioned.get(false));
+  }
+
+  public static void flatMapTest() {
+    List<Integer> numbers1 = List.of(1, 2, 3);
+    List<Integer> numbers2 = List.of(4, 5, 6);
+    List<Integer> numbers3 = List.of(7, 8, 9);
+
+    Stream.of(numbers1, numbers2, numbers3).flatMap(s -> s.stream()).forEach(y -> {
+      System.out.println("flat map test is: %d".formatted(y));
+    });
+
   }
 }
