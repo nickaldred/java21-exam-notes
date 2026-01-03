@@ -3,6 +3,8 @@ package com.java.streams;
 import java.util.List;
 import java.util.Map;
 import java.util.Spliterator;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -21,7 +23,9 @@ public class StreamNotes {
     // spliteratorTest();
     // collectTest();
     // partitionByTest();
-    flatMapTest();
+    // flatMapTest();
+    // groupingByTest();
+    peekTest();
 
   }
 
@@ -47,6 +51,14 @@ public class StreamNotes {
     String result2 = testStream2.reduce("", (s, e) -> s + e);
     System.out.println("parallel reduce test 3, result is: " + result2);
 
+  }
+
+  public static void mapTest() {
+    final List<Integer> testList = List.of(1, 2, 3, 4, 5);
+    final Stream<Integer> testStream = testList.stream();
+
+    testStream.map(s -> s * 2).forEach(s -> System.out.print(s));
+    System.out.println();
   }
 
   public static void concatTest() {
@@ -146,6 +158,42 @@ public class StreamNotes {
     Stream.of(numbers1, numbers2, numbers3).flatMap(s -> s.stream()).forEach(y -> {
       System.out.println("flat map test is: %d".formatted(y));
     });
+  }
 
+  public static void peekTest() {
+    List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+    numbers.stream()
+        .peek(n -> System.out.println("Processing number: " + n))
+        .forEach(n -> System.out.println("Final number: " + n));
+  }
+
+  public static void groupingByTest() {
+    List<String> words = List.of("apple", "banana", "apricot", "blueberry", "cherry");
+
+    Function<String, Integer> startsWithA = word -> word.length();
+
+    Predicate<String> empty = String::isEmpty;
+    Predicate<String> notEmpty = empty.negate();
+
+    Map<Integer, List<String>> grouped = words.stream()
+        .collect(Collectors.groupingBy(startsWithA));
+
+    grouped.forEach((key, value) -> {
+      System.out.println("Words starting with " + key + ": " + value);
+    });
+  }
+
+  public static void teeingTest() {
+    List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+
+    Map<String, Double> result = numbers.stream()
+        .collect(Collectors.teeing(
+            Collectors.summingDouble(n -> n),
+            Collectors.counting(),
+            (sum, count) -> Map.of("sum", sum, "average", sum / count)));
+
+    System.out.println("Sum: " + result.get("sum"));
+    System.out.println("Average: " + result.get("average"));
   }
 }
