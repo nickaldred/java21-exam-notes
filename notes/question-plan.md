@@ -7,3 +7,8 @@
 5. Go over code to check it even compiles or produces a runtime error
 6. If required go through code step by step
 7. establish answer
+
+## Stream questions
+
+- Streams can only be operated on once
+- Does the stream have a terminal operation?

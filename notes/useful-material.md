@@ -17,7 +17,7 @@
 
 ### IS
 * I - Nothing completes the sentence
-* S - Shift operators << and >>
+* S - Shift operators '<< and >>'
 
 ### REBL (Lower Precedence)
 * R - Relational     (<, >, <=, >=, instanceof)
