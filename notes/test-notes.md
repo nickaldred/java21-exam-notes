@@ -60,6 +60,18 @@
 
 - When you split a Spliterator, the first half goes to the resulting (new) Spliterator while the remaining half remains with the original one.
 
+- All permitted subclasses of a sealed class must belong to the same package (or belong to the same named module).
+
+- First, static statements/blocks are called IN THE ORDER they are defined. Next, instance initializer statements/blocks are called IN THE ORDER they are defined. Finally, the constructor is called. So, then it prints b.
+
+- Protected is less restrictive than default
+
+- String's substring(int) method creates a substring starting from the given index up to the end of the string. Indexing starts with 0.
+
+- Sorting an unlimited stream will cause the JVM to run out of memory eventually and so this code will throw "java.lang.OutOfMemoryError: Java heap space" at runtime.
+
+- The return type of readPassword is char[] and not a String
+
 ## Thread states
 
 | State | Description | Transition Trigger |
