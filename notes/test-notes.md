@@ -72,6 +72,10 @@
 
 - The return type of readPassword is char[] and not a String
 
+- Duration counts in terms of hours, minutes, and seconds. Therefore, days are converted into hours.
+
+- A Duration of 0 is printed as 0S and a Period of 0 is printed as 0D.
+
 ## Thread states
 
 | State | Description | Transition Trigger |
@@ -104,3 +108,19 @@
 | **Insertion** | N/A | `insert(offset, anyType)` |
 | **Removal** | N/A (use `replace` or `substring`) | `delete(start, end)`, `deleteCharAt()` |
 | **Modification** | `replace()`, `toLowerCase()`, `trim()` | `replace(start, end, string)`, `reverse()` |
+
+## Time Formatters
+
+| Symbol | Meaning | Example (Output) | Notes |
+| :--- | :--- | :--- | :--- |
+| **m** | Minute-of-hour | `7`, `07` | Use `mm` for zero-padding. |
+| **M** | Month-of-year | `7`, `07`, `Jul`, `July` | `M` (7), `MM` (07), `MMM` (Jul), `MMMM` (July). |
+| **d** | Day-of-month | `3`, `03` | Represents the day within the month (1-31). |
+| **D** | Day-of-year | `189` | Represents the day from the start of the year (1-366). |
+| **e** | Day-of-week (number/text) | `2`, `Mon`, `Monday` | Depends on locale; `e` is numeric, `eee` is short text. |
+| **y** | Year-of-era | `2026`, `26` | `yyyy` is the full year; `yy` is the last two digits. |
+| **s** | Second-of-minute | `5`, `05` | Use `ss` for zero-padding. |
+| **S** | Fraction-of-second | `9`, `94` | Represents nanoseconds/milliseconds. |
+| **h** | Clock-hour (1-12) | `9` | Used for AM/PM format (12-hour clock). |
+| **H** | Hour-of-day (0-23) | `21` | Used for 24-hour military time. |
+| **z** | Time-zone name | `PST`, `Pacific Standard Time` | Outputs the specific name of the zone. |

@@ -1,7 +1,5 @@
 # Left to do
 
-Test 8
-test 9
 Test 11
 Test 12
 Test 13
